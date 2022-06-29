@@ -22,16 +22,16 @@
             android:id="@+id/counter_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:textColor="@color/purple_700"
-            android:textSize="30dp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/rows_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="rows" />
+            android:layout_marginStart="10dp"
+            android:text="@string/rows_label" />
     </LinearLayout>
 
     <LinearLayout
@@ -44,20 +44,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="ADD"
-            android:layout_marginRight="10dp"/>
+            android:text="@string/add_button"
+            android:layout_marginEnd="10dp"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/reset_button"
-            android:text="RESET" />
+            android:text="@string/reset_button" />
     </LinearLayout>
     <Button
         android:id="@+id/add_mark_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="ADD A MARK" />
+        android:text="@string/add_a_mark_button" />
 
     <androidx.fragment.app.FragmentContainerView
         android:layout_width="match_parent"
