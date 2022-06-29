@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import com.kkuznetsova.knitterassistent.R
 import com.kkuznetsova.knitterassistent.models.CounterData
 import com.kkuznetsova.knitterassistent.viewmodels.MainActivityViewModel
@@ -25,17 +26,19 @@ class MainActivity : AppCompatActivity() {
         counter = findViewById(R.id.counter_text_view)
         rowText = findViewById(R.id.rows_text_view)
 
-        val viewModel = MainActivityViewModel()
-        updateCounter(viewModel.getCounterData())
+        val viewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
+        viewModel.counterData.observe(this) {
+            updateCounter(it)
+        }
 
         addButton.setOnClickListener {
             viewModel.onAddClicked()
-            updateCounter(viewModel.getCounterData())
+            updateCounter(viewModel.counterData.value)
         }
 
         resetButton.setOnClickListener {
             viewModel.onResetClicked()
-            updateCounter(viewModel.getCounterData())
+            updateCounter(viewModel.counterData.value)
         }
 
         addMarkButton.setOnClickListener {
@@ -43,8 +46,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateCounter(counterData: CounterData) {
-        counter.text = counterData.counter.toString()
-        rowText.text = if (counterData.isPlural) "rows" else "row"
+    private fun updateCounter(counterData: CounterData?) {
+        counter.text = (counterData?.counter ?: 0).toString()
+        rowText.text = if (counterData?.isPlural != false) "rows" else "row"
     }
 }

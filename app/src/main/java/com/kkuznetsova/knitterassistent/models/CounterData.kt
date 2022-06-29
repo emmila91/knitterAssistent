@@ -11,7 +11,7 @@ class CounterData(
 
     fun resetCounter() {
         counter = 0
-        isPlural = isCounterPlural()
+        isPlural = true
     }
 
     private fun isCounterPlural() = counter != 1
