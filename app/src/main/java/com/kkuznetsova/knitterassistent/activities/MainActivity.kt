@@ -2,52 +2,46 @@ package com.kkuznetsova.knitterassistent.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.renderscript.ScriptGroup
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.kkuznetsova.knitterassistent.R
+import com.kkuznetsova.knitterassistent.databinding.ActivityMainBinding
 import com.kkuznetsova.knitterassistent.models.CounterData
 import com.kkuznetsova.knitterassistent.viewmodels.MainActivityViewModel
 
 class MainActivity : AppCompatActivity() {
-    lateinit var counter: TextView
-    lateinit var rowText: TextView
+    private lateinit var activityMainBinding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        val addButton = findViewById<Button>(R.id.add_button)
-        val resetButton = findViewById<Button>(R.id.reset_button)
-        val addMarkButton = findViewById<Button>(R.id.add_mark_button)
-        val markFragment = findViewById<View>(R.id.marks_list_fragment)
-
-        counter = findViewById(R.id.counter_text_view)
-        rowText = findViewById(R.id.rows_text_view)
+        activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         val viewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
         viewModel.counterData.observe(this) {
             updateCounter(it)
         }
 
-        addButton.setOnClickListener {
+        activityMainBinding.addButton.setOnClickListener {
             viewModel.onAddClicked()
             updateCounter(viewModel.counterData.value)
         }
 
-        resetButton.setOnClickListener {
+        activityMainBinding.resetButton.setOnClickListener {
             viewModel.onResetClicked()
             updateCounter(viewModel.counterData.value)
         }
 
-        addMarkButton.setOnClickListener {
+        activityMainBinding.addMarkButton.setOnClickListener {
             viewModel.onAddMarkClicked()
         }
     }
 
     private fun updateCounter(counterData: CounterData?) {
-        counter.text = (counterData?.counter ?: 0).toString()
-        rowText.text = if (counterData?.isPlural != false) "rows" else "row"
+        activityMainBinding.counterTextView.text = (counterData?.counter ?: 0).toString()
+        activityMainBinding.rowsTextView.text = if (counterData?.isPlural != false) "rows" else "row"
     }
 }
