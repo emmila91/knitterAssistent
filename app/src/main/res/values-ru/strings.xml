@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="i_have_made">Я сделала</string>
+    <string name="reset_button">Очистить</string>
+    <string name="add_a_mark_button">Добавить метку</string>
+    <string name="add_button">Добавить ряд</string>
+    <string name="rows_label">рядов</string>
+    <string name="new_marker_title">Новая метка</string>
+    <string name="enter_a_comment">Добавьте комментарий</string>
+    <string name="confirmButton">Подтвердить</string>
+    <string name="cancelButton">Отменить</string>
+    <string name="row_label">ряд</string>
+</resources>

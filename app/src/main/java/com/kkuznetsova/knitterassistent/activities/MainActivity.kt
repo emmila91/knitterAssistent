@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.kkuznetsova.knitterassistent.R
 import com.kkuznetsova.knitterassistent.databinding.ActivityMainBinding
+import com.kkuznetsova.knitterassistent.fragments.AddMarkerDialogFragment
 import com.kkuznetsova.knitterassistent.viewmodels.MainActivityViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -16,27 +17,19 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         val viewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
-        viewModel.counterData.observe(this) {
-            updateCounter(it)
-        }
+        activityMainBinding.viewModel = viewModel
+        activityMainBinding.lifecycleOwner = this
 
         activityMainBinding.addButton.setOnClickListener {
             viewModel.onAddClicked()
-            updateCounter(viewModel.counterData.value)
         }
 
         activityMainBinding.resetButton.setOnClickListener {
             viewModel.onResetClicked()
-            updateCounter(viewModel.counterData.value)
         }
 
         activityMainBinding.addMarkButton.setOnClickListener {
-            viewModel.onAddMarkClicked("Comment")
+            AddMarkerDialogFragment().show(supportFragmentManager, null)
         }
-    }
-
-    private fun updateCounter(counter: Int?) {
-        activityMainBinding.counterTextView.text = counter.toString()
-        activityMainBinding.rowsTextView.text = if (counter != 1) "rows" else "row"
     }
 }

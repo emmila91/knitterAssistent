@@ -1,8 +1,14 @@
 <resources>
-    <string name="app_name">Knitter Assistent</string>
+    <string name="app_name" translatable="false">Knitter Assistent</string>
     <string name="i_have_made">I\'ve made</string>
     <string name="reset_button">RESET</string>
     <string name="add_a_mark_button">ADD A MARK</string>
     <string name="add_button">ADD</string>
+    <string name="row_label">row</string>
     <string name="rows_label">rows</string>
+
+    <string name="new_marker_title">New marker</string>
+    <string name="enter_a_comment">Enter a comment</string>
+    <string name="confirmButton">Confirm</string>
+    <string name="cancelButton">Cancel</string>
 </resources>

@@ -18,6 +18,7 @@ class MainActivityViewModel : ViewModel() {
 
     fun onResetClicked() {
         _counterData.value = 0
+        _marker.value = null
     }
 
     fun onAddMarkClicked(comment: String) {
