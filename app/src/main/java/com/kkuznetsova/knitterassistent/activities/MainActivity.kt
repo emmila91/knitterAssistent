@@ -2,15 +2,10 @@ package com.kkuznetsova.knitterassistent.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.renderscript.ScriptGroup
-import android.view.View
-import android.widget.Button
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.kkuznetsova.knitterassistent.R
 import com.kkuznetsova.knitterassistent.databinding.ActivityMainBinding
-import com.kkuznetsova.knitterassistent.models.CounterData
 import com.kkuznetsova.knitterassistent.viewmodels.MainActivityViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -36,12 +31,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         activityMainBinding.addMarkButton.setOnClickListener {
-            viewModel.onAddMarkClicked()
+            viewModel.onAddMarkClicked("Comment")
         }
     }
 
-    private fun updateCounter(counterData: CounterData?) {
-        activityMainBinding.counterTextView.text = (counterData?.counter ?: 0).toString()
-        activityMainBinding.rowsTextView.text = if (counterData?.isPlural != false) "rows" else "row"
+    private fun updateCounter(counter: Int?) {
+        activityMainBinding.counterTextView.text = counter.toString()
+        activityMainBinding.rowsTextView.text = if (counter != 1) "rows" else "row"
     }
 }
