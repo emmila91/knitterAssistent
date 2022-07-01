@@ -1,8 +1,6 @@
 package com.kkuznetsova.knitterassistent.models
 
-class Marker(
+data class Marker(
     var comment: String,
-    var rowNumber: Int,
-) {
-    fun convertToString() = "$comment $rowNumber"
-}
+    var rowNumber: Int
+)

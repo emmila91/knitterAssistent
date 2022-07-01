@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.kkuznetsova.knitterassistent.MarkerListAdapter
 import com.kkuznetsova.knitterassistent.R
 import com.kkuznetsova.knitterassistent.databinding.FragmentMarkListBinding
 import com.kkuznetsova.knitterassistent.viewmodels.MainActivityViewModel
@@ -25,9 +27,13 @@ class MarkListFragment : Fragment() {
             container,
             false
         )
-
-        binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
+        viewModel.marker.observe(viewLifecycleOwner) {
+            val adapter = MarkerListAdapter(it ?: emptyList())
+            binding.markersRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+            binding.markersRecyclerView.adapter = adapter
+        }
 
         return binding.root
     }
