@@ -44,9 +44,16 @@ class AddMarkerDialogFragment : DialogFragment() {
 
     private fun setupClickListeners() {
         binding.positiveButton.setOnClickListener {
-            viewModel.onAddMarkClicked(binding.dialogEditText.editableText.toString())
+            viewModel.onAddMarkClicked(
+                if (binding.dialogEditText.editableText.isNotEmpty())
+                    binding.dialogEditText.editableText.toString()
+                else {
+                    "New marker"
+                }
+            )
             dismiss()
         }
+
         binding.negativeButton.setOnClickListener {
             dismiss()
         }
