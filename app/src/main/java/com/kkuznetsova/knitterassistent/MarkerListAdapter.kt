@@ -9,12 +9,14 @@ import com.kkuznetsova.knitterassistent.models.Marker
 
 class MarkerViewHolder(private val binding: MarkerRecyclerViewItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
+    fun getData(): Marker = binding.marker!!
+
     fun bind(marker: Marker) {
         binding.marker = marker
     }
 }
 
-class MarkerListAdapter(private val items: List<Marker>) :
+class MarkerListAdapter(private var items: List<Marker>) :
     RecyclerView.Adapter<MarkerViewHolder>() {
 
     private lateinit var binding: MarkerRecyclerViewItemBinding
@@ -34,4 +36,9 @@ class MarkerListAdapter(private val items: List<Marker>) :
     }
 
     override fun getItemCount(): Int = items.size
+
+    fun updateItems(markers: List<Marker>) {
+        items = markers
+        notifyDataSetChanged()
+    }
 }
