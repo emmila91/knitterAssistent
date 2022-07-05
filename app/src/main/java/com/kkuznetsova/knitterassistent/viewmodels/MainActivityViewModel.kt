@@ -9,8 +9,8 @@ class MainActivityViewModel : ViewModel() {
     private val _counterData = MutableLiveData(0)
     val counterData: LiveData<Int> = _counterData
 
-    private val _marker = MutableLiveData<List<Marker>?>(emptyList())
-    val marker: LiveData<List<Marker>?> = _marker
+    private val _marker = MutableLiveData<List<Marker>>(emptyList())
+    val marker: LiveData<List<Marker>> = _marker
 
     fun onAddClicked() {
         _counterData.value = _counterData.value?.plus(1)
@@ -23,5 +23,9 @@ class MainActivityViewModel : ViewModel() {
 
     fun onAddMarkClicked(comment: String) {
         _marker.value = _marker.value?.plus(Marker(comment, _counterData.value ?: 0))
+    }
+
+    fun onRemoveMarkerClicked(marker: Marker) {
+        _marker.value = _marker.value?.minus(marker)
     }
 }

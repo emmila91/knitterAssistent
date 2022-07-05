@@ -48,7 +48,7 @@ class AddMarkerDialogFragment : DialogFragment() {
                 if (binding.dialogEditText.editableText.isNotEmpty())
                     binding.dialogEditText.editableText.toString()
                 else {
-                    "New marker"
+                    getString(R.string.new_marker_title)
                 }
             )
             dismiss()
