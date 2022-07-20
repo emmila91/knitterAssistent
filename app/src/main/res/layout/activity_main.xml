@@ -5,7 +5,6 @@
     tools:context="com.kkuznetsova.knitterassistent.activities.MainActivity">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.kkuznetsova.knitterassistent.viewmodels.MainActivityViewModel" />
@@ -33,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/main_activity_margin_10"
             android:layout_marginTop="-15dp"
-            android:text="@{String.valueOf(viewModel.counterData)}"
+            android:text="@{String.valueOf(viewModel.counter.counterData)}"
             android:textColor="@color/green_20"
             android:textSize="30sp"
             app:layout_constraintEnd_toStartOf="@+id/rowsTextView"
@@ -46,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/main_activity_margin_10"
-            android:text="@{viewModel.counterData == 1 ? @string/row_label : @string/rows_label}"
+            android:text="@{viewModel.counter.counterData == 1 ? @string/row_label : @string/rows_label}"
             app:layout_constraintBottom_toBottomOf="@+id/textView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/counterTextView" />
