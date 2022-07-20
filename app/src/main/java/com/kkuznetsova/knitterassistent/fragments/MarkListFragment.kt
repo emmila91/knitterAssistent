@@ -31,7 +31,7 @@ class MarkListFragment : Fragment() {
         )
         binding.lifecycleOwner = this
 
-        val adapter = MarkerListAdapter(viewModel.marker.value ?: emptyList())
+        val adapter = MarkerListAdapter(viewModel.markersData.markers.value ?: emptyList())
         binding.markersRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.markersRecyclerView.adapter = adapter
         val itemTouchCallBackInstance = ItemTouchHelperCallback.getInstance(adapter) {
@@ -39,7 +39,7 @@ class MarkListFragment : Fragment() {
         }
         ItemTouchHelper(itemTouchCallBackInstance).attachToRecyclerView(binding.markersRecyclerView)
 
-        viewModel.marker.observe(viewLifecycleOwner) {
+        viewModel.markersData.markers.observe(viewLifecycleOwner) {
             adapter.updateItems(it)
         }
 
